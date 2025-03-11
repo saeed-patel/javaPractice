@@ -1,108 +1,143 @@
-public class Entry 
-{
-	public static void main(String[] args)
-	{
-		SelectChoice.optchoice();
+
+public class Entry {
+
+	public static void main(String[] args) {
+		Employee arrEmployee [] = new Employee[50];
+		Employee emp = null;
+		int index = 0;
+		
 		int choice = 0;
-	
-		while (choice !=9)
+		
+		final int ADD = 1;
+		final int DISPLAY = 2;
+		final int SORT = 3;
+		final int LOAD = 4;
+		final int SAVE = 5;
+					
+		while (choice != 6)
 		{
-			choice=ConsoleInput.getInteger();
+			System.out.println("1. Add");
+			System.out.println("2. Display");
+			System.out.println("3. Sort");
+			System.out.println("4. Load");
+			System.out.println("5. Save");
+			System.out.println("6. Exit");
+			System.out.println("Enter your choice (1-6): ");
+			choice = ConsoleInput.getInteger();
+			
+			if (choice == 6)
+			{
+				System.out.println("Exiting the program. Goodbye!!");
+				break;
+			}
+			
 			switch (choice)
 			{
-				case 1:
-				{
-					System.out.println("Enter the first integer Number: ");
-					int num1 = ConsoleInput.getInteger();
-					System.out.println("Enter the second integer Number: ");
-					int num2 = ConsoleInput.getInteger();
-					int result = Operation.add(num1, num2);
-					System.out.println("Result: "+ result);
-					SelectChoice.optchoice();
-					break;
+				case ADD:
+				{	
+					final int MANAGER = 1;
+					final int ENGINEER = 2;
+					final int SALESPERSON = 3;
+					
+					System.out.println("Select Employee Category (1/2/3): ");
+					System.out.println("1. Manager");
+					System.out.println("2. Engineer");
+					System.out.println("3. Sales Person");
+					int category = ConsoleInput.getInteger();
+					
+					System.out.println("Enter Name: ");
+					String name = ConsoleInput.getString();
+					
+					System.out.println("Enter Address: ");
+					String address = ConsoleInput.getString();
+					
+					System.out.println("Enter Age: ");
+					int age = ConsoleInput.getInteger();
+					
+					System.out.println("Enter Gender: ");
+					char gender = ConsoleInput.getCharacter();
+					
+					System.out.println("Enter Basic Salary: ");
+					float basicSalary = ConsoleInput.getFloat();
+					
+					switch (category)
+					{
+						case MANAGER:
+						{
+							System.out.println("Enter HRA: ");
+							float hra = ConsoleInput.getFloat();
+							
+							emp=new Manager(name, address, age, gender, basicSalary, hra);
+							arrEmployee[index++]=emp;
+						}
+						break;
+						
+						case ENGINEER:
+						{
+							System.out.println("Enter Overtime: ");
+							float overTime = ConsoleInput.getFloat();
+							
+							emp=new Engineer(name, address, age, gender, basicSalary, overTime);
+							arrEmployee[index++]=emp;
+						}
+						break;
+						
+						case SALESPERSON:
+						{
+							System.out.println("Enter Commission: ");
+							float commission = ConsoleInput.getFloat();
+							
+							emp=new SalesPerson(name, address, age, gender, basicSalary, commission);
+							arrEmployee[index++]=emp;
+						}
+						
+						default:
+						{
+							System.out.println("Invalid choice input!");
+						}
+						break;
+					}
+					
+					System.out.println("Data Added!!");
+					
 				}
-				case 2:
+				break;
+				
+				case DISPLAY:
 				{
-					System.out.println("Enter the first Float Number: ");
-					float num1 = ConsoleInput.getFloat();
-					System.out.println("Enter the second Float Number: ");
-					float num2 = ConsoleInput.getFloat();
-					float result = Operation.add(num1, num2);
-					System.out.println("Result: "+ result);
-					SelectChoice.optchoice();
-					break;
+					for (int tmp=0; tmp<index; tmp++)
+					{	
+						System.out.println("------------");
+						System.out.println("Employee" + (tmp+1));
+						arrEmployee[tmp].display();
+					}
+					System.out.println("End of list");
 				}
-				case 3:
+				break;
+				
+				case SORT:
 				{
-					System.out.println("Enter the first integer Number: ");
-					int num1 = ConsoleInput.getInteger();
-					System.out.println("Enter the second integer Number: ");
-					int num2 = ConsoleInput.getInteger();
-					int result = Operation.sub(num1, num2);
-					System.out.println("Result: "+ result);
-					SelectChoice.optchoice();
-					break;
+					System.out.println("SORT");
 				}
-				case 4:
+				break;
+				
+				case LOAD:
 				{
-					System.out.println("Enter the first Float Number: ");
-					float num1 = ConsoleInput.getFloat();
-					System.out.println("Enter the second Float Number: ");
-					float num2 = ConsoleInput.getFloat();
-					float result = Operation.sub(num1, num2);
-					System.out.println("Result: "+ result);
-					SelectChoice.optchoice();
-					break;
+					System.out.println("LOAD");
 				}
-				case 5:
+				break;
+				
+				case SAVE:
 				{
-					System.out.println("Enter the first integer Number: ");
-					int num1 = ConsoleInput.getInteger();
-					System.out.println("Enter the second integer Number: ");
-					int num2 = ConsoleInput.getInteger();
-					int result = Operation.mul(num1, num2);
-					System.out.println("Result: "+ result);
-					SelectChoice.optchoice();
-					break;
+					System.out.println("SAVE");
 				}
-				case 6:
+				break;
+				
+				default:
 				{
-					System.out.println("Enter the first Float Number: ");
-					float num1 = ConsoleInput.getFloat();
-					System.out.println("Enter the second Float Number: ");
-					float num2 = ConsoleInput.getFloat();
-					float result = Operation.mul(num1, num2);
-					System.out.println("Result: "+ result);
-					SelectChoice.optchoice();
-					break;
+					System.out.println("Invalid choice input! Please enter choice from 1-6 only!");
 				}
-				case 7:
-				{
-					System.out.println("Enter the first integer Number: ");
-					int num1 = ConsoleInput.getInteger();
-					System.out.println("Enter the second integer Number: ");
-					int num2 = ConsoleInput.getInteger();
-					int result = Operation.div(num1, num2);
-					System.out.println("Result: "+ result);
-					SelectChoice.optchoice();
-					break;
-				}
-				case 8:
-				{
-					System.out.println("Enter the first Float Number: ");
-					float num1 = ConsoleInput.getFloat();
-					System.out.println("Enter the second Float Number: ");
-					float num2 = ConsoleInput.getFloat();
-					float result = Operation.div(num1, num2);
-					System.out.println("Result: "+ result);
-					SelectChoice.optchoice();
-					break;
-				}
-				case 9:
-				{
-					System.out.println("bye");
-					break;
-				}
+				break;
 			}		
 		}
 	}
